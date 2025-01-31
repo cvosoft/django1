@@ -7,20 +7,23 @@
     <title>Document</title>
     <script>
 
-        const fetchGetUrl = "http://127.0.0.1:8000/tech_gadgets/gadget/1";
-        const fetchPostUrl = "http://127.0.0.1:8000/tech_gadgets/gadget/";
+        const fetchGetUrlGadget = "http://127.0.0.1:8000/tech_gadgets/gadget/1";
+        const fetchPostUrlGadget = "http://127.0.0.1:8000/tech_gadgets/gadget/";
+
+        const fetchGetUrlManuf = "http://127.0.0.1:8000/tech_gadgets/manufacturer/1";
+        const fetchPostUrlManuf = "http://127.0.0.1:8000/tech_gadgets/manufacturer/";
 
 
-        async function fetchTestGet() {
-            let result = await fetch(fetchGetUrl)
+        async function fetchTestGet(url) {
+            let result = await fetch(url)
             let resultToText = await result.text()
             console.log(resultToText);
         }
 
-        async function fetchTestPost() {
+        async function fetchTestPost(url) {
             const data = { "test": "funktioniert" };
 
-            let response = await fetch(fetchPostUrl, {
+            let response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -37,8 +40,11 @@
 </head>
 
 <body>
-    <button onclick="fetchTestGet()"> empfange Daten </button>
-    <button onclick="fetchTestPost()"> Sende Daten </button>
+    <button onclick="fetchTestGet(fetchGetUrlGadget)"> empfange Daten (Gadget) </button>
+    <button onclick="fetchTestPost(fetchPostUrlGadget)"> Sende Daten (Gadget)</button>
+    <br>
+    <button onclick="fetchTestGet(fetchGetUrlManuf)"> empfange Daten (Manuf) </button>
+    <button onclick="fetchTestPost(fetchPostUrlManuf)"> Sende Daten (Manuf)</button>
 </body>
 
 </html>
